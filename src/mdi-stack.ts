@@ -43,10 +43,3 @@ class MdiStack extends HTMLElement {
         console.log('component did unmount');
     }
 }
-
-window.addEventListener('DOMContentLoaded', () => {
-    const element = document.querySelector('mdi-stack');
-    setTimeout(()=> {
-        element.parentNode.removeChild(element);
-    }, 10000);
-});
