@@ -13,9 +13,9 @@ import Component from "./Component";
 })
 class MdiIcon extends HTMLElement {
   connectedCallback() {
-    const elm = document.createElement('h3');
-    elm.textContent = 'Component will destroy in 10seconds';
-    this.shadowRoot.appendChild(elm);
+    // const elm = document.createElement('h3');
+    // elm.textContent = 'Stuff';
+    // this.shadowRoot.appendChild(elm);
     console.log('connected callback');
   }
 
