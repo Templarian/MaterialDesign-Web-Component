@@ -11,6 +11,9 @@
       margin: 1.5rem 2rem;
       font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
+    h1 small, h2 small, h3 small {
+      color: #444;
+    }
     .example {
       display: inline-block;
       vertical-align: top;
@@ -47,7 +50,7 @@
   </ul>
   <h2>Basic</h2>
 
-  <h3>Icon No Attributes</h3>
+  <h3>Icon <small>No Attributes</small></h3>
   <div class="example">
     <mdi-icon></mdi-icon>
   </div>
@@ -56,23 +59,45 @@
       &lt;mdi-icon&gt;&lt;/mdi-icon&gt;
     </code>
   </div>
-  <h3>Button - Icon No Attributes</h3>
+  <h3>Button - Icon <small>Style Attribute</small></h3>
   <div class="example">
     <button>
-      <mdi-icon></mdi-icon>
+      <mdi-icon style="vertical-align: middle;"></mdi-icon>
       Button
     </button>
   </div>
+  <div>
+    <code class="block">
+      &lt;button&gt;<br/>
+      &nbsp;&nbsp;&lt;mdi-icon style=&quot;vertical-align: middle;&quot;&gt;&lt;/mdi-icon&gt;<br/>
+      &lt;/button&gt;
+    </code>
+  </div>
   <hr/>
   <h2>Trigger Unmount</h2>
+  <h3>Icon</h3>
   <div style="height:1.5rem;border: 1px dotted gray;">
       <mdi-icon id="iconUnmount"></mdi-icon>
   </div>
-  <button id="buttonUnmount">Remove Icon</button>
+  <button id="buttonIconUnmount">Remove Icon</button>
+  <h3>Stack</h3>
+  <div style="height:1.5rem;border: 1px dotted gray;">
+    <mdi-stack id="stackUnmount">
+      <mdi-icon></mdi-icon>
+      <mdi-icon></mdi-icon>
+    </mdi-stack>
+  </div>
+  <button id="buttonIconUnmount">Remove Stack</button>
+  <!-- Scripts -->
   <script src="dist/mdi-icon.js"></script>
+  <script src="dist/mdi-stack.js"></script>
   <script>
-    document.getElementById('buttonUnmount').addEventListener('click', () => {
+    document.getElementById('buttonIconUnmount').addEventListener('click', () => {
       const element = document.getElementById('iconUnmount');
+      element.parentNode.removeChild(element);
+    });
+    document.getElementById('buttonStackUnmount').addEventListener('click', () => {
+      const element = document.getElementById('stackUnmount');
       element.parentNode.removeChild(element);
     });
   </script>
