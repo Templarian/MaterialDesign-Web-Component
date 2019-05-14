@@ -4,13 +4,18 @@ MDI Icon web component for use with `@mdi/js`.
 
 ## Development
 
-Please install `npm install -g http-server` as an easy way to launch a basic web server.
+To run the application to watch for changes run the npm commands.
 
 ```bash
 npm install
 npm test
-npm run build
-http-server
+npm start
 ```
 
 Open http://localhost:8080 (port could vary)
+
+To build just the components.
+
+```bash
+npm run build
+```
