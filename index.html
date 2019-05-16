@@ -11,8 +11,12 @@
       margin: 1.5rem 2rem;
       font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
-    h1 small, h2 small, h3 small {
-      color: #444;
+    h1 small,
+    h2 small,
+    h3 small {
+      color: #999;
+      font-weight: normal;
+      font-size: 0.875rem;
     }
     .example {
       display: inline-block;
@@ -48,18 +52,28 @@
     <li><code>&lt;mdi-icon&gt;</code> - Render single SVG icon.</li>
     <li><code>&lt;mdi-stack&gt;</code> - Overlay icons above eachother.</li>
   </ul>
+
   <h2>Basic</h2>
 
   <h3>Icon <small>No Attributes</small></h3>
+
   <div class="example">
-    <mdi-icon></mdi-icon>
+    <mdi-icon id="i1"></mdi-icon>
   </div>
   <div>
     <code class="block">
       &lt;mdi-icon&gt;&lt;/mdi-icon&gt;
     </code>
   </div>
+  <button onclick="setIcon('i1', 'path', 'M12,4C14.21,4 16,5.79 16,8C16,10.21 14.21,12 12,12C9.79,12 8,10.21 8,8C8,5.79 9.79,4 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z')">
+    Set icon to Account
+  </button>
+  <button onclick="setIcon('i1', 'path', 'M2,2H8V4H16V2H22V8H20V16H22V22H16V20H8V22H2V16H4V8H2V2M16,8V6H8V8H6V16H8V18H16V16H18V8H16M4,4V6H6V4H4M18,4V6H20V4H18M4,18V20H6V18H4M18,18V20H20V18H18Z')">
+    Set icon to Square
+  </button>
+
   <h3>Button - Icon <small>Style Attribute</small></h3>
+
   <div class="example">
     <button>
       <mdi-icon style="vertical-align: middle;"></mdi-icon>
@@ -73,14 +87,20 @@
       &lt;/button&gt;
     </code>
   </div>
+
   <hr/>
+
   <h2>Trigger Unmount</h2>
+
   <h3>Icon</h3>
+
   <div style="height:1.5rem;border: 1px dotted gray;">
       <mdi-icon id="iconUnmount"></mdi-icon>
   </div>
   <button id="buttonIconUnmount">Remove Icon</button>
+
   <h3>Stack</h3>
+
   <div style="height:1.5rem;border: 1px dotted gray;">
     <mdi-stack id="stackUnmount">
       <mdi-icon></mdi-icon>
@@ -88,18 +108,23 @@
     </mdi-stack>
   </div>
   <button id="buttonIconUnmount">Remove Stack</button>
+
   <!-- Scripts -->
   <script src="dist/mdi-icon.js"></script>
-  <script src="dist/mdi-stack.js"></script>
+  <!-- <script src="dist/mdi-stack.js"></script>-->
   <script>
+    window.setIcon = function(id, key, val) {
+      const element = document.getElementById(id);
+      element.setAttribute(key, val);
+    }
     document.getElementById('buttonIconUnmount').addEventListener('click', () => {
       const element = document.getElementById('iconUnmount');
       element.parentNode.removeChild(element);
     });
-    document.getElementById('buttonStackUnmount').addEventListener('click', () => {
+    /*document.getElementById('buttonStackUnmount').addEventListener('click', () => {
       const element = document.getElementById('stackUnmount');
       element.parentNode.removeChild(element);
-    });
+    });*/
   </script>
 </body>
 

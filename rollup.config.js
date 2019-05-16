@@ -1,8 +1,15 @@
 import typescript from 'rollup-plugin-typescript2';
 import { terser } from "rollup-plugin-terser";
+import { string } from "rollup-plugin-string";
 
 export default [{
   plugins: [
+    string({
+      include: "**/*.html"
+    }),
+    string({
+      include: "**/*.css"
+    }),
     typescript(),
     terser()
   ],
@@ -12,7 +19,7 @@ export default [{
     format: "esm",
     sourcemap: true
   }
-}, {
+} /*, {
   plugins: [
     typescript(),
     terser()
@@ -23,4 +30,4 @@ export default [{
     format: "esm",
     sourcemap: true
   }
-}]
+}*/]

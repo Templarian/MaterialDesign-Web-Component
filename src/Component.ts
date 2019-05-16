@@ -45,5 +45,11 @@ export default (config: CustomElementConfig) => (cls) => {
       }
   };
 
+  
+  cls.prototype.attributeChangedCallback = function(name, oldValue, newValue) {
+    this[name] = newValue;
+    this.attributeChangedCallback(name, oldValue, newValue);
+  }
+
   window.customElements.define(config.selector, cls);
 };
