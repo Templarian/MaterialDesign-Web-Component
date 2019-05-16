@@ -1,22 +1,18 @@
-import html from "./mdi-icon.html";
+import Component from "./Component";
+
+import template from "./mdi-icon.html";
 import style from './mdi-icon.css';
 
 const pathProp = Symbol('path');
 const viewProp = Symbol('view');
 
+@Component({
+  selector: 'mdi-icon',
+  style: style,
+  template: template,
+  useShadow: true
+})
 class MdiIcon extends HTMLElement {
-  constructor() {
-    super();
-    const template = document.createElement('template');
-    template.innerHTML = `<style>${style}</style>${html}`;
-    const clone = document.importNode(template.content, true);
-    const shadowRoot = this.attachShadow({mode: 'open'});
-    shadowRoot.appendChild(clone);
-    this[viewProp] = {
-      path: shadowRoot.querySelector('path') as SVGPathElement
-    }
-  }
-
   static get observedAttributes() { return ['path']; }
 
   [viewProp]: {
@@ -32,15 +28,14 @@ class MdiIcon extends HTMLElement {
     return this[pathProp]
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    this[name] = newValue;
-  }
-
   render() {
     this[viewProp].path.setAttribute('d', this.path);
   }
 
   connectedCallback() {
+    this[viewProp] = {
+      path: this.shadowRoot.querySelector('path') as SVGPathElement
+    }
     // const elm = document.createElement('h3');
     // elm.textContent = 'Stuff';
     // this.shadowRoot.appendChild(elm);
@@ -68,5 +63,3 @@ class MdiIcon extends HTMLElement {
     console.log('component did unmount');
   }
 }
-
-window.customElements.define('mdi-icon', MdiIcon);
