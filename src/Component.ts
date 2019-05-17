@@ -20,14 +20,17 @@ export default (config: CustomElementConfig) => (cls) => {
 
   cls.prototype.connectedCallback = function () {
     const clone = document.importNode(template.content, true);
-    if (config.useShadow) {
-      this.attachShadow({ mode: 'open' }).appendChild(clone);
-    } else {
+    if (config.useShadow === false) {
       this.appendChild(clone);
+    } else {
+      this.attachShadow({ mode: 'open' }).appendChild(clone);
     }
 
     if (this.componentWillMount) {
       this.componentWillMount();
+    }
+    if (this.render) {
+      this.render();
     }
     connectedCallback.call(this);
     if (this.componentDidMount) {

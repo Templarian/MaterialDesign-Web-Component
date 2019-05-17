@@ -8,24 +8,30 @@ const viewProp = Symbol('view');
 
 @Component({
   selector: 'mdi-icon',
-  style: style,
-  template: template,
-  useShadow: true
+  style,
+  template,
 })
 class MdiIcon extends HTMLElement {
+  constructor() {
+    super();
+
+  }
+
   static get observedAttributes() { return ['path']; }
 
   [viewProp]: {
     path: SVGPathElement
   }
 
+  // @Prop() path: string = 'M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z'
+
   [pathProp] = 'M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z'
   set path(value: string) {
-    this[pathProp] = value
+    this[pathProp] = value;
     this.render();
   }
   get path() {
-    return this[pathProp]
+    return this[pathProp];
   }
 
   render() {
@@ -33,9 +39,6 @@ class MdiIcon extends HTMLElement {
   }
 
   connectedCallback() {
-    this[viewProp] = {
-      path: this.shadowRoot.querySelector('path') as SVGPathElement
-    }
     // const elm = document.createElement('h3');
     // elm.textContent = 'Stuff';
     // this.shadowRoot.appendChild(elm);
@@ -48,6 +51,9 @@ class MdiIcon extends HTMLElement {
   }
 
   componentWillMount() {
+    this[viewProp] = {
+      path: this.shadowRoot.querySelector('path') as SVGPathElement
+    }
     console.log('component will mount');
   }
 
