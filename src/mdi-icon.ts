@@ -27,7 +27,7 @@ class MdiIcon extends HTMLElement {
 
   [pathProp] = 'M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z'
   set path(value: string) {
-    this[pathProp] = value;
+    this[pathProp] = value || 'M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z';
     this.render();
   }
   get path() {
