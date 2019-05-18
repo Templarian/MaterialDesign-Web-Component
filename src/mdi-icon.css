@@ -6,5 +6,5 @@
   height: 1.5rem;
 }
 :host svg path {
-  fill: red;
+  fill: #222;
 }

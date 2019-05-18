@@ -5,6 +5,7 @@ import style from './mdi-icon.css';
 
 const pathProp = Symbol('path');
 const viewProp = Symbol('view');
+const noIcon = 'M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z';
 
 @Component({
   selector: 'mdi-icon',
@@ -12,10 +13,6 @@ const viewProp = Symbol('view');
   template,
 })
 class MdiIcon extends HTMLElement {
-  constructor() {
-    super();
-
-  }
 
   static get observedAttributes() { return ['path']; }
 
@@ -25,9 +22,9 @@ class MdiIcon extends HTMLElement {
 
   // @Prop() path: string = 'M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z'
 
-  [pathProp] = 'M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z'
+  [pathProp] = noIcon
   set path(value: string) {
-    this[pathProp] = value || 'M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z';
+    this[pathProp] = value || noIcon;
     this.render();
   }
   get path() {
