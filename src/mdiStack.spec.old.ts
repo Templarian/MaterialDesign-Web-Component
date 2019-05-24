@@ -1,5 +1,5 @@
-import './mdi-stack'
-import './mdi-icon'
+import './mdiStack'
+import './mdiIcon'
 
 describe('mdi-stack', () => {
   it('should be registered', () => {

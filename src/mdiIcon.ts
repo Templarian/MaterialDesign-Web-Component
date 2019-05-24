@@ -1,18 +1,18 @@
 import Component from "./Component";
 
-import template from "./mdi-icon.html";
-import style from './mdi-icon.css';
+import template from "./mdiIcon.html";
+import style from './mdiIcon.css';
 
 const pathProp = Symbol('path');
 const viewProp = Symbol('view');
-const noIcon = 'M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z';
+const noIcon = 'M0 0h24v24H0V0zm2 2v20h20V2H2z';
 
 @Component({
   selector: 'mdi-icon',
   style,
   template,
 })
-class MdiIcon extends HTMLElement {
+export default class MdiIcon extends HTMLElement {
 
   static get observedAttributes() { return ['path']; }
 
@@ -20,7 +20,7 @@ class MdiIcon extends HTMLElement {
     path: SVGPathElement
   }
 
-  // @Prop() path: string = 'M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z'
+  // @Prop() path: string = 'M0 0h24v24H0V0zm2 2v20h20V2H2z'
 
   [pathProp] = noIcon
   set path(value: string) {

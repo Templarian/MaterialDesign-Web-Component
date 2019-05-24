@@ -13,9 +13,9 @@ export default [{
     typescript(),
     terser()
   ],
-  input: './src/mdi-icon.ts',
+  input: './src/mdiIcon.ts',
   output: {
-    file: "./dist/mdi-icon.js",
+    file: "./dist/mdiIcon.js",
     format: "esm",
     sourcemap: true
   }
