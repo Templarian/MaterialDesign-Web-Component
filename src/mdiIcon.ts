@@ -39,30 +39,30 @@ export default class MdiIcon extends HTMLElement {
     // const elm = document.createElement('h3');
     // elm.textContent = 'Stuff';
     // this.shadowRoot.appendChild(elm);
-    console.log(this.path);
-    console.log('connected callback');
+    // console.log(this.path);
+    // console.log('connected callback');
   }
 
   disconnectedCallback() {
-    console.log('disconnected callback');
+    //console.log('disconnected callback');
   }
 
   componentWillMount() {
     this[viewProp] = {
       path: this.shadowRoot.querySelector('path') as SVGPathElement
     }
-    console.log('component will mount');
+    //console.log('component will mount');
   }
 
   componentDidMount() {
-    console.log('component did mount');
+    //console.log('component did mount');
   }
 
   componentWillUnmount() {
-    console.log('component will unmount');
+    //console.log('component will unmount');
   }
 
   componentDidUnmount() {
-    console.log('component did unmount');
+    //console.log('component did unmount');
   }
 }
