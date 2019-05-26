@@ -1,10 +1,10 @@
-import Component from "./Component";
+import { Component, Prop } from "./WebComponent";
 
 import template from "./mdiIcon.html";
 import style from './mdiIcon.css';
 
-const pathProp = Symbol('path');
 const viewProp = Symbol('view');
+const pathProp = Symbol('path');
 const noIcon = 'M0 0h24v24H0V0zm2 2v20h20V2H2z';
 
 @Component({
@@ -14,25 +14,32 @@ const noIcon = 'M0 0h24v24H0V0zm2 2v20h20V2H2z';
 })
 export default class MdiIcon extends HTMLElement {
 
-  static get observedAttributes() { return ['path']; }
+  static observedAttributes = ['path']
+
+  @Prop() color: string | null;
+
+  [pathProp] = noIcon
+
+  //@Prop() path: string
+  get path() {
+    return this[pathProp];
+  }
+  set path(value: string) {
+    this[pathProp] = value || noIcon;
+    this.render();
+  }
 
   [viewProp]: {
     path: SVGPathElement
   }
 
-  // @Prop() path: string = 'M0 0h24v24H0V0zm2 2v20h20V2H2z'
-
-  [pathProp] = noIcon
-  set path(value: string) {
-    this[pathProp] = value || noIcon;
-    this.render();
-  }
-  get path() {
-    return this[pathProp];
-  }
-
   render() {
     this[viewProp].path.setAttribute('d', this.path);
+    if (this.color) {
+      this[viewProp].path.setAttribute('fill', this.color);
+    } else {
+      this[viewProp].path.removeAttribute('fill');
+    }
   }
 
   connectedCallback() {
@@ -49,9 +56,8 @@ export default class MdiIcon extends HTMLElement {
 
   componentWillMount() {
     this[viewProp] = {
-      path: this.shadowRoot.querySelector('path') as SVGPathElement
+      path: this!.shadowRoot!.querySelector('path') as SVGPathElement
     }
-    //console.log('component will mount');
   }
 
   componentDidMount() {
