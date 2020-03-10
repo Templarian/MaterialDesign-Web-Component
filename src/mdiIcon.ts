@@ -12,7 +12,7 @@ const noIcon = 'M0 0h24v24H0V0zm2 2v20h20V2H2z';
   style,
   template,
 })
-export default class MdiIcon extends HTMLElement {
+class MdiIcon extends HTMLElement {
 
   static observedAttributes = ['path']
 
