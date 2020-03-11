@@ -1,5 +1,5 @@
 :host {
-  display: inline-block;
+  display: inline-flex;
 }
 :host svg {
   width: 1.5rem;
