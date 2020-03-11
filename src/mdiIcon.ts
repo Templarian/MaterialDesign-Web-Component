@@ -31,10 +31,6 @@ class MdiIcon extends HTMLElement {
   }
 
   connectedCallback() {
-    // const elm = document.createElement('h3');
-    // elm.textContent = 'Stuff';
-    // this.shadowRoot.appendChild(elm);
-    // console.log(this.path);
     // console.log('connected callback');
   }
 
@@ -43,7 +39,7 @@ class MdiIcon extends HTMLElement {
   }
 
   componentWillMount() {
-    console.log('component will mount');
+    // console.log('component will mount');
   }
 
   componentDidMount() {
