@@ -3,14 +3,12 @@ import { Component, Prop } from "./WebComponent";
 import template from "./mdiIcon.html";
 import style from './mdiIcon.css';
 
-const parts = Symbol('parts');
 const noIcon = 'M0 0h24v24H0V0zm2 2v20h20V2H2z';
 
 @Component({
   selector: 'mdi-icon',
   style,
-  template,
-  parts
+  template
 })
 class MdiIcon extends HTMLElement {
 

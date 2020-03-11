@@ -3,7 +3,6 @@ interface CustomElementConfig {
   template: string;
   style?: string;
   useShadow?: boolean;
-  parts?: Symbol
 }
 
 interface Constructor {
