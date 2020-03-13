@@ -1,6 +1,6 @@
 interface CustomElementConfig {
   selector: string;
-  template: string;
+  template?: string;
   style?: string;
   useShadow?: boolean;
 }
@@ -11,31 +11,63 @@ interface Constructor {
 }
 
 const init = Symbol('init');
+const template = Symbol('template');
+const style = Symbol('style');
 
 export function Component(config: CustomElementConfig) {
   return function (cls) {
-    if (!config.template) {
-      throw new Error('You need to pass a template for the element');
+    var parentCls = Object.getPrototypeOf(cls.prototype);
+    if (cls[style]) {
+      config.style = `${cls[style]}${config.style || ''}`;
     }
-    const template = document.createElement('template');
+    if (cls[template]) {
+      if (config.template?.match(/<parent\/>/)) {
+        config.template = config.template.replace(/<parent\/>/, cls[template]);
+      } else {
+        config.template = `${cls[template]}${config.template || ''}`;
+      }
+    }
     if (config.style) {
-      config.template = `<style>${config.style}</style> ${config.template}`;
+      cls[style] = config.style;
     }
-    template.innerHTML = config.template;
-
+    if (config.template) {
+      cls[template] = config.template;
+    }
     const connectedCallback = cls.prototype.connectedCallback || (() => { });
     const disconnectedCallback = cls.prototype.disconnectedCallback || (() => { });
 
     cls.prototype.connectedCallback = function () {
-      const clone = document.importNode(template.content, true);
-      if (config.useShadow === false) {
-        this.appendChild(clone);
-      } else {
-        this.attachShadow({ mode: 'open' }).appendChild(clone);
+      console.log('config', config.selector);
+      if (!this[init] && config.template) {
+        const $template = document.createElement('template');
+        if (config.style) {
+          config.template = `${config.template}<style>${config.style}</style>`;
+        }
+        $template.innerHTML = config.template;
+        const $node = document.importNode($template.content, true);
+        if (config.useShadow === false) {
+          this.appendChild($node);
+        } else {
+          this.attachShadow({ mode: 'open' }).appendChild($node);
+        }
+      } else if (this[init] && config.style) {
+        /*if (this.shadowRoot) {
+          const style = document.createElement('style');
+          style.appendChild(document.createTextNode(config.style));
+          this.appendChild(style);
+        }*/
+        //console.log(config);
+      } else if (this[init] && config.template) {
+        throw new Error('template from base class cannot be overriden. Fix: remove template from @Component');
+      } else if (config.template) {
+        throw new Error('You need to pass a template for the element');
       }
 
       if (this.componentWillMount) {
         this.componentWillMount();
+      }
+      if (parentCls.render) {
+        parentCls.render.call(this);
       }
       if (this.render) {
         this.render();
@@ -61,13 +93,19 @@ export function Component(config: CustomElementConfig) {
       this[name] = newValue;
     };
 
-    window.customElements.define(config.selector, cls);
+    if (!window.customElements.get(config.selector)) {
+      window.customElements.define(config.selector, cls);
+    }
   };
 }
 
 export function Prop(): any {
   return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const { constructor } = target;
+    if (!constructor.observedAttributes) {
+      console.log('define static')
+      constructor.observedAttributes = [];
+    }
     const { observedAttributes } = constructor as Constructor;
     if (!constructor.symbols) {
       constructor.symbols = {};
@@ -83,7 +121,12 @@ export function Prop(): any {
       set(value: string) {
         this[symbol] = value;
         if (this[init]) {
-          this.render();
+          if (target.render) {
+            target.render.call(this);
+          }
+          if (this.render) {
+            this.render();
+          }
         }
       }
     });

@@ -10,10 +10,7 @@ const noIcon = 'M0 0h24v24H0V0zm2 2v20h20V2H2z';
   style,
   template
 })
-class MdiIcon extends HTMLElement {
-
-  static observedAttributes = [];
-
+export default class MdiIcon extends HTMLElement {
   @Prop() color: string | null;
   @Prop() path: string = noIcon;
 
@@ -21,6 +18,7 @@ class MdiIcon extends HTMLElement {
     return this.shadowRoot?.querySelector('path') as any;
   }
 
+  // @Bind(this.$path, 'd', this.path)
   render() {
     this.$path.setAttribute('d', this.path);
     if (this.color) {

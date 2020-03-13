@@ -1,0 +1,29 @@
+/* Example: Custom CSS */
+:host svg path {
+    fill: #0E4C8B;
+}
+
+span {
+    position: relative;
+}
+
+span::before {
+  content: attr(data-tooltip);
+  display: inline-flex;
+  position: absolute;
+  bottom: 50%;
+  background: #000;
+  color: #FFF;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  opacity:0;
+  transition:0.3s;
+  overflow:hidden;
+  max-width: 10rem;
+  pointer-events: none;
+}
+
+span:hover::before {
+    opacity:1;
+    bottom: 100%;
+}

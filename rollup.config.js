@@ -2,32 +2,42 @@ import typescript from 'rollup-plugin-typescript2';
 import { terser } from "rollup-plugin-terser";
 import { string } from "rollup-plugin-string";
 
+const BROWSER = 'iife';
+
 export default [{
   plugins: [
     string({
-      include: "**/*.html"
+      include: '**/*.html'
     }),
     string({
-      include: "**/*.css"
+      include: '**/*.css'
     }),
     typescript(),
     terser()
   ],
   input: './src/mdiIcon.ts',
   output: {
-    file: "./dist/mdiIcon.js",
-    format: "esm",
+    name: 'MdiIcon',
+    file: './dist/mdi/icon.js',
+    format: BROWSER,
     sourcemap: true
   }
-} /*, {
+}, {
   plugins: [
+    string({
+      include: '**/*.html'
+    }),
+    string({
+      include: '**/*.css'
+    }),
     typescript(),
     terser()
   ],
-  input: './src/mdi-stack.ts',
+  input: './src/mdiCustom.ts',
   output: {
-    file: "./dist/mdi-stack.js",
-    format: "esm",
+    name: 'MdiCustom',
+    file: './dist/mdi/custom.js',
+    format: BROWSER,
     sourcemap: true
   }
-}*/]
+}]
