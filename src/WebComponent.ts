@@ -140,3 +140,16 @@ export function Part(): any {
     });
   };
 }
+
+/**
+ * Bind an part to a value.
+ * 
+ * @param part Ex: this.$partName
+ * @param attribute Ex: 'innerText'
+ * @param value Ex: this.value
+ */
+export function Bind(part, attribute, value): Function {
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    
+  };
+}
