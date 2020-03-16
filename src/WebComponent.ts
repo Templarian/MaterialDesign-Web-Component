@@ -127,5 +127,16 @@ export function Prop(): any {
         }
       }
     });
-  }
+  };
+}
+
+export function Part(): any {
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    Object.defineProperty(target, propertyKey, {
+      get() {
+        const key = propertyKey.replace(/^\$/, '');
+        return this.shadowRoot?.querySelector(`[part~=${key}]`);
+      }
+    });
+  };
 }

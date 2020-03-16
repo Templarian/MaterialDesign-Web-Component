@@ -1,4 +1,4 @@
-import { Component, Prop } from "./WebComponent";
+import { Component, Prop, Part } from "./WebComponent";
 
 import template from "./mdiIcon.html";
 import style from './mdiIcon.css';
@@ -14,9 +14,7 @@ export default class MdiIcon extends HTMLElement {
   @Prop() color: string | null;
   @Prop() path: string = noIcon;
 
-  get $path(): SVGPathElement {
-    return this.shadowRoot?.querySelector('path') as any;
-  }
+  @Part() $path: SVGPathElement;
 
   // @Bind(this.$path, 'd', this.path)
   render() {

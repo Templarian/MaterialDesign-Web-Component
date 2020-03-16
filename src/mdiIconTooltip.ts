@@ -1,4 +1,4 @@
-import { Component, Prop } from "./WebComponent";
+import { Component, Prop, Part } from "./WebComponent";
 import MdiIcon from './mdiIcon';
 
 import style from './mdiIconTooltip.css';
@@ -17,18 +17,16 @@ export default class MdiIconTooltip extends MdiIcon {
   @Prop() path: string = noIcon;
   @Prop() tooltip: string | null = null;
 
-  get $span(): HTMLSpanElement {
-    return this.shadowRoot?.querySelector('span') as any;
-  }
+  @Part() $tooltip: HTMLSpanElement;
 
   // Example: Custom rendering
   render() {
     if (this.tooltip) {
-      this.$span.dataset.tooltip = this.tooltip;
-      this.$span.classList.add('tooltip');
+      this.$tooltip.dataset.tooltip = this.tooltip;
+      this.$tooltip.classList.add('tooltip');
     } else {
-      this.$span.dataset.tooltip = '';
-      this.$span.classList.remove('tooltip');
+      this.$tooltip.dataset.tooltip = '';
+      this.$tooltip.classList.remove('tooltip');
     }
   }
 }
