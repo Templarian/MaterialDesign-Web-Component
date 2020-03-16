@@ -33,10 +33,28 @@ export default [{
     typescript(),
     terser()
   ],
-  input: './src/mdiCustom.ts',
+  input: './src/mdiIconTooltip.ts',
   output: {
-    name: 'MdiCustom',
-    file: './dist/mdi/custom.js',
+    name: 'MdiIconTooltip',
+    file: './dist/mdi/icon-tooltip.js',
+    format: BROWSER,
+    sourcemap: true
+  }
+}, {
+  plugins: [
+    string({
+      include: '**/*.html'
+    }),
+    string({
+      include: '**/*.css'
+    }),
+    typescript(),
+    terser()
+  ],
+  input: './src/mdiIconLevel.ts',
+  output: {
+    name: 'MdiLevel',
+    file: './dist/mdi/iconLevel.js',
     format: BROWSER,
     sourcemap: true
   }

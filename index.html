@@ -72,7 +72,7 @@
   <h3>Icon <small>No Attributes</small></h3>
 
   <div class="example">
-    <mdi-icon id="i1"></mdi-icon>
+    <!--<mdi-icon id="i1"></mdi-icon>-->
   </div>
   <div>
     <code class="block">
@@ -129,10 +129,10 @@
   <h3>Stack</h3>
 
   <div style="height:1.5rem;border: 1px dotted gray;">
-    <mdi-stack id="stackUnmount">
-      <!--<mdi-icon></mdi-icon>
-      <mdi-icon></mdi-icon>-->
-    </mdi-stack>
+    <!--<mdi-stack id="stackUnmount">
+      <mdi-icon></mdi-icon>
+      <mdi-icon></mdi-icon>
+    </mdi-stack>-->
   </div>
   <button id="buttonIconUnmount">Remove Stack</button>
 
@@ -141,11 +141,11 @@
   <h3>Custom Icon <small>(<code>extends MdiIcon</code>)</small></h3>
 
   <div class="example">
-    <mdi-custom id="ic2"></mdi-custom>
+    <mdi-icon-tooltip id="ic2" tooltip="Hello World!"></mdi-icon-tooltip>
   </div>
   <div>
     <code class="block">
-      &lt;mdi-custom&gt;&lt;/mdi-custom&gt;
+      &lt;mdi-icon-tooltip&gt;&lt;/mdi-icon-tooltip&gt;
     </code>
   </div>
   <button onclick="setIcon('ic2', 'path', '')">
@@ -157,14 +157,17 @@
   <button onclick="setIcon('ic2', 'path', 'M2,2H8V4H16V2H22V8H20V16H22V22H16V20H8V22H2V16H4V8H2V2M16,8V6H8V8H6V16H8V18H16V16H18V8H16M4,4V6H6V4H4M18,4V6H20V4H18M4,18V20H6V18H4M18,18V20H20V18H18Z')">
     Set icon to Square
   </button>
-  <button onclick="setIcon('ic2', 'tooltip', 'hello world!')">
-    Set tooltip to "hello world!"
+  <button onclick="setIcon('ic2', 'tooltip', 'Hello World!')">
+    Set tooltip to "Hello World!"
+  </button>
+  <button onclick="setIcon('ic2', 'tooltip', '')">
+    ""
   </button>
 
 
   <!-- Scripts -->
   <script src="dist/mdi/icon.js"></script>
-  <script src="dist/mdi/custom.js"></script>
+  <script src="dist/mdi/icon-tooltip.js"></script>
   <!-- <script src="dist/mdiStack.js"></script>-->
   <script>
     window.setIcon = function(id, key, val) {

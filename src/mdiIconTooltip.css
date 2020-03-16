@@ -3,11 +3,11 @@
     fill: #0E4C8B;
 }
 
-span {
+span.tooltip {
     position: relative;
 }
 
-span::before {
+span.tooltip::before {
   content: attr(data-tooltip);
   display: inline-flex;
   position: absolute;
@@ -23,7 +23,7 @@ span::before {
   pointer-events: none;
 }
 
-span:hover::before {
+span.tooltip:hover::before {
     opacity:1;
     bottom: 100%;
 }
