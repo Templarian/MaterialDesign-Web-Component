@@ -1,57 +1,57 @@
 import typescript from 'rollup-plugin-typescript2';
-import { terser } from "rollup-plugin-terser";
+import resolve from '@rollup/plugin-node-resolve';
 import { string } from "rollup-plugin-string";
 
 const BROWSER = 'iife';
 
 export default [{
   plugins: [
+    resolve(),
+    typescript({ typescript: require('typescript') }),
     string({
       include: '**/*.html'
     }),
     string({
       include: '**/*.css'
-    }),
-    typescript(),
-    terser()
+    })
   ],
-  input: './src/mdiIcon.ts',
+  input: './src/mdi/icon/icon.ts',
   output: {
     name: 'MdiIcon',
-    file: './dist/mdi/icon.js',
+    file: './dist/mdiIcon.js',
     format: BROWSER,
     sourcemap: true
   }
 }, {
   plugins: [
+    resolve(),
+    typescript({ typescript: require('typescript') }),
     string({
       include: '**/*.html'
     }),
     string({
       include: '**/*.css'
-    }),
-    typescript(),
-    terser()
+    })
   ],
-  input: './src/mdiIconTooltip.ts',
+  input: './src/mdi/iconTooltip/iconTooltip.ts',
   output: {
     name: 'MdiIconTooltip',
-    file: './dist/mdi/icon-tooltip.js',
+    file: './dist/mdi/iconTooltip.js',
     format: BROWSER,
     sourcemap: true
   }
 }, {
   plugins: [
+    resolve(),
+    typescript({ typescript: require('typescript') }),
     string({
       include: '**/*.html'
     }),
     string({
       include: '**/*.css'
-    }),
-    typescript(),
-    terser()
+    })
   ],
-  input: './src/mdiIconLevel.ts',
+  input: './src/mdi/iconLevel/iconLevel.ts',
   output: {
     name: 'MdiLevel',
     file: './dist/mdi/iconLevel.js',

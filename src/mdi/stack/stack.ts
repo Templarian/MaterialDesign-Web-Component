@@ -1,4 +1,4 @@
-import { Component } from "./WebComponent";
+import { Component } from '@mdi/element';
 
 @Component({
     selector: 'mdi-stack',
@@ -19,7 +19,7 @@ class MdiStack extends HTMLElement {
     connectedCallback() {
         const elm = document.createElement('h3');
         elm.textContent = 'Boo!';
-        this.shadowRoot.appendChild(elm);
+        this.shadowRoot!.appendChild(elm);
         console.log('connected callback');
     }
 

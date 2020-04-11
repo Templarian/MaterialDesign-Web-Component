@@ -1,0 +1,31 @@
+:host {
+  display: inline-flex;
+}
+:host [part~=svg] {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+:host [part~=path] {
+  fill: #222;
+}
+.spin {
+  animation: spin linear 2s infinite;
+  transform-origin: center;
+}
+
+.spin-inverse {
+  animation: spin-inverse linear 2s infinite;
+  transform-origin: center;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+@keyframes spin-inverse {
+  to {
+    transform: rotate(-360deg)
+  }
+}

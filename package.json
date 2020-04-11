@@ -14,8 +14,12 @@
     "type": "git",
     "url": "git+https://github.com/Templarian/MaterialDesign-Web-Component.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@mdi/element": "^0.0.3"
+  },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@rollup/plugin-typescript": "^4.0.0",
     "@types/jest": "^24.9.1",
     "document-register-element": "^1.14.3",
     "html-loader": "^0.5.5",
@@ -26,9 +30,8 @@
     "rollup": "^1.32.1",
     "rollup-plugin-string": "^3.0.0",
     "rollup-plugin-terser": "^4.0.4",
-    "rollup-plugin-typescript2": "^0.21.2",
+    "rollup-plugin-typescript2": "^0.27.0",
     "ts-jest": "^24.3.0",
-    "tslib": "^1.11.1",
     "typescript": "^3.8.3"
   }
 }

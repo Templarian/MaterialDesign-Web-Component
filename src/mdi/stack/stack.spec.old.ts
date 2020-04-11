@@ -1,4 +1,4 @@
-import './mdiStack'
+import './stack'
 import './mdiIcon'
 
 describe('mdi-stack', () => {
