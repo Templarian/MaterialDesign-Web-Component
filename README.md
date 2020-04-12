@@ -8,13 +8,7 @@ MDI Icon web component for use with `@mdi/js`.
 npm install @mdi/web-component --save-dev
 ```
 
-```typescript
-import '@mdi/web-component/mdiIcon.js';
-```
-
-```html
-<mdi-icon path="..."></mdi-icon>
-```
+- [mdi-icon](src/mdi/icon/)
 
 ## Contribute to this Project
 
