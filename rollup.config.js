@@ -3,11 +3,19 @@ import resolve from '@rollup/plugin-node-resolve';
 import { string } from "rollup-plugin-string";
 
 const BROWSER = 'iife';
+const CONFIG = {
+  typescript: require('typescript'),
+  tsconfigOverride: {
+    compilerOptions: {
+      module: "es2015"
+    }
+  }
+};
 
 export default [{
   plugins: [
     resolve(),
-    typescript({ typescript: require('typescript') }),
+    typescript(CONFIG),
     string({
       include: '**/*.html'
     }),
@@ -25,7 +33,7 @@ export default [{
 }, {
   plugins: [
     resolve(),
-    typescript({ typescript: require('typescript') }),
+    typescript(CONFIG),
     string({
       include: '**/*.html'
     }),
@@ -36,14 +44,14 @@ export default [{
   input: './src/mdi/iconTooltip/iconTooltip.ts',
   output: {
     name: 'MdiIconTooltip',
-    file: './dist/mdi/iconTooltip.js',
+    file: './dist/mdiIconTooltip.js',
     format: BROWSER,
     sourcemap: true
   }
 }, {
   plugins: [
     resolve(),
-    typescript({ typescript: require('typescript') }),
+    typescript(CONFIG),
     string({
       include: '**/*.html'
     }),
@@ -54,7 +62,7 @@ export default [{
   input: './src/mdi/iconLevel/iconLevel.ts',
   output: {
     name: 'MdiLevel',
-    file: './dist/mdi/iconLevel.js',
+    file: './dist/mdiIconLevel.js',
     format: BROWSER,
     sourcemap: true
   }
