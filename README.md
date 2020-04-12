@@ -2,9 +2,23 @@
 
 MDI Icon web component for use with `@mdi/js`.
 
-## Development
+## Usage
 
-To run the application to watch for changes run the npm commands.
+```bash
+npm install @mdi/web-component --save-dev
+```
+
+```typescript
+import '@mdi/web-component/mdiIcon.js';
+```
+
+```html
+<mdi-icon path="..."></mdi-icon>
+```
+
+## Contribute to this Project
+
+To run the application locally use the following NPM commands.
 
 ```bash
 npm install
